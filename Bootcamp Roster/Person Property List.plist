@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Student</key>
+	<array>
+		<string>Michael Babiy</string>
+		<string>Cole Bratcher</string>
+		<string>Christopher Cohan</string>
+		<string>Dan Fairbanks</string>
+		<string>Lauren Lee</string>
+		<string>Sean Mcneil</string>
+		<string>Taylor Potter</string>
+		<string>Brian Radebaugh</string>
+		<string>Anton Rivera</string>
+		<string>Reed Sweeney</string>
+		<string>Ryo Tulman</string>
+		<string>Matthew Voss</string>
+	</array>
+	<key>Teacher</key>
+	<array>
+		<string>John Clem</string>
+		<string>Brad Johnson</string>
+		<string>Lindy</string>
+		<string>Brook Riggio</string>
+		<string>Will</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAD129AA18F338DE00817837 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD129A918F338DE00817837 /* Foundation.framework */; };
+		FAD129AC18F338DE00817837 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD129AB18F338DE00817837 /* CoreGraphics.framework */; };
+		FAD129AE18F338DE00817837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD129AD18F338DE00817837 /* UIKit.framework */; };
+		FAD129B418F338DE00817837 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAD129B218F338DE00817837 /* InfoPlist.strings */; };
+		FAD129B618F338DE00817837 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD129B518F338DE00817837 /* main.m */; };
+		FAD129BA18F338DE00817837 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD129B918F338DE00817837 /* RTAppDelegate.m */; };
+		FAD129C318F338DE00817837 /* RTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD129C218F338DE00817837 /* RTViewController.m */; };
+		FAD129C518F338DE00817837 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD129C418F338DE00817837 /* Images.xcassets */; };
+		FAD129CC18F338DE00817837 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD129CB18F338DE00817837 /* XCTest.framework */; };
+		FAD129CD18F338DE00817837 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD129A918F338DE00817837 /* Foundation.framework */; };
+		FAD129CE18F338DE00817837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD129AD18F338DE00817837 /* UIKit.framework */; };
+		FAD129D618F338DE00817837 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAD129D418F338DE00817837 /* InfoPlist.strings */; };
+		FAD129D818F338DE00817837 /* Bootcamp_RosterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD129D718F338DE00817837 /* Bootcamp_RosterTests.m */; };
+		FAD129E618F33BAF00817837 /* RTPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD129E518F33BAF00817837 /* RTPerson.m */; };
+		FAD129E918F33BC900817837 /* RTStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD129E818F33BC900817837 /* RTStudent.m */; };
+		FAD129EC18F33BDB00817837 /* RTTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD129EB18F33BDB00817837 /* RTTeacher.m */; };
+		FAD129EE18F33F7A00817837 /* Person Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD129ED18F33F7A00817837 /* Person Property List.plist */; };
+		FAD129F118F3568400817837 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD129EF18F3568400817837 /* Main_iPad.storyboard */; };
+		FAD129F218F3568400817837 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD129F018F3568400817837 /* Main_iPhone.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAD129CF18F338DE00817837 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAD1299E18F338DE00817837 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAD129A518F338DE00817837;
+			remoteInfo = "Bootcamp Roster";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FAD129A618F338DE00817837 /* Bootcamp Roster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bootcamp Roster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAD129A918F338DE00817837 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FAD129AB18F338DE00817837 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FAD129AD18F338DE00817837 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FAD129B118F338DE00817837 /* Bootcamp Roster-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bootcamp Roster-Info.plist"; sourceTree = "<group>"; };
+		FAD129B318F338DE00817837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAD129B518F338DE00817837 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FAD129B718F338DE00817837 /* Bootcamp Roster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bootcamp Roster-Prefix.pch"; sourceTree = "<group>"; };
+		FAD129B818F338DE00817837 /* RTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTAppDelegate.h; sourceTree = "<group>"; };
+		FAD129B918F338DE00817837 /* RTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTAppDelegate.m; sourceTree = "<group>"; };
+		FAD129C118F338DE00817837 /* RTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTViewController.h; sourceTree = "<group>"; };
+		FAD129C218F338DE00817837 /* RTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTViewController.m; sourceTree = "<group>"; };
+		FAD129C418F338DE00817837 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FAD129CA18F338DE00817837 /* Bootcamp RosterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bootcamp RosterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAD129CB18F338DE00817837 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FAD129D318F338DE00817837 /* Bootcamp RosterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bootcamp RosterTests-Info.plist"; sourceTree = "<group>"; };
+		FAD129D518F338DE00817837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAD129D718F338DE00817837 /* Bootcamp_RosterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bootcamp_RosterTests.m; sourceTree = "<group>"; };
+		FAD129E418F33BAF00817837 /* RTPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPerson.h; sourceTree = "<group>"; };
+		FAD129E518F33BAF00817837 /* RTPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPerson.m; sourceTree = "<group>"; };
+		FAD129E718F33BC900817837 /* RTStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStudent.h; sourceTree = "<group>"; };
+		FAD129E818F33BC900817837 /* RTStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStudent.m; sourceTree = "<group>"; };
+		FAD129EA18F33BDB00817837 /* RTTeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTTeacher.h; sourceTree = "<group>"; };
+		FAD129EB18F33BDB00817837 /* RTTeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTTeacher.m; sourceTree = "<group>"; };
+		FAD129ED18F33F7A00817837 /* Person Property List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Person Property List.plist"; sourceTree = "<group>"; };
+		FAD129EF18F3568400817837 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
+		FAD129F018F3568400817837 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAD129A318F338DE00817837 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAD129AC18F338DE00817837 /* CoreGraphics.framework in Frameworks */,
+				FAD129AE18F338DE00817837 /* UIKit.framework in Frameworks */,
+				FAD129AA18F338DE00817837 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAD129C718F338DE00817837 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAD129CC18F338DE00817837 /* XCTest.framework in Frameworks */,
+				FAD129CE18F338DE00817837 /* UIKit.framework in Frameworks */,
+				FAD129CD18F338DE00817837 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAD1299D18F338DE00817837 = {
+			isa = PBXGroup;
+			children = (
+				FAD129AF18F338DE00817837 /* Bootcamp Roster */,
+				FAD129D118F338DE00817837 /* Bootcamp RosterTests */,
+				FAD129A818F338DE00817837 /* Frameworks */,
+				FAD129A718F338DE00817837 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAD129A718F338DE00817837 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAD129A618F338DE00817837 /* Bootcamp Roster.app */,
+				FAD129CA18F338DE00817837 /* Bootcamp RosterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAD129A818F338DE00817837 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAD129A918F338DE00817837 /* Foundation.framework */,
+				FAD129AB18F338DE00817837 /* CoreGraphics.framework */,
+				FAD129AD18F338DE00817837 /* UIKit.framework */,
+				FAD129CB18F338DE00817837 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAD129AF18F338DE00817837 /* Bootcamp Roster */ = {
+			isa = PBXGroup;
+			children = (
+				FAD129B818F338DE00817837 /* RTAppDelegate.h */,
+				FAD129B918F338DE00817837 /* RTAppDelegate.m */,
+				FAD129E318F33B7A00817837 /* Controller */,
+				FAD129E218F33B7600817837 /* View */,
+				FAD129E118F33B6C00817837 /* Model */,
+				FAD129C418F338DE00817837 /* Images.xcassets */,
+				FAD129B018F338DE00817837 /* Supporting Files */,
+			);
+			path = "Bootcamp Roster";
+			sourceTree = "<group>";
+		};
+		FAD129B018F338DE00817837 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAD129B118F338DE00817837 /* Bootcamp Roster-Info.plist */,
+				FAD129B218F338DE00817837 /* InfoPlist.strings */,
+				FAD129B518F338DE00817837 /* main.m */,
+				FAD129B718F338DE00817837 /* Bootcamp Roster-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAD129D118F338DE00817837 /* Bootcamp RosterTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAD129D718F338DE00817837 /* Bootcamp_RosterTests.m */,
+				FAD129D218F338DE00817837 /* Supporting Files */,
+			);
+			path = "Bootcamp RosterTests";
+			sourceTree = "<group>";
+		};
+		FAD129D218F338DE00817837 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAD129D318F338DE00817837 /* Bootcamp RosterTests-Info.plist */,
+				FAD129D418F338DE00817837 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAD129E118F33B6C00817837 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FAD129E418F33BAF00817837 /* RTPerson.h */,
+				FAD129E518F33BAF00817837 /* RTPerson.m */,
+				FAD129E718F33BC900817837 /* RTStudent.h */,
+				FAD129E818F33BC900817837 /* RTStudent.m */,
+				FAD129EA18F33BDB00817837 /* RTTeacher.h */,
+				FAD129EB18F33BDB00817837 /* RTTeacher.m */,
+				FAD129ED18F33F7A00817837 /* Person Property List.plist */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FAD129E218F33B7600817837 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FAD129EF18F3568400817837 /* Main_iPad.storyboard */,
+				FAD129F018F3568400817837 /* Main_iPhone.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FAD129E318F33B7A00817837 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FAD129C118F338DE00817837 /* RTViewController.h */,
+				FAD129C218F338DE00817837 /* RTViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAD129A518F338DE00817837 /* Bootcamp Roster */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAD129DB18F338DE00817837 /* Build configuration list for PBXNativeTarget "Bootcamp Roster" */;
+			buildPhases = (
+				FAD129A218F338DE00817837 /* Sources */,
+				FAD129A318F338DE00817837 /* Frameworks */,
+				FAD129A418F338DE00817837 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Bootcamp Roster";
+			productName = "Bootcamp Roster";
+			productReference = FAD129A618F338DE00817837 /* Bootcamp Roster.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FAD129C918F338DE00817837 /* Bootcamp RosterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAD129DE18F338DE00817837 /* Build configuration list for PBXNativeTarget "Bootcamp RosterTests" */;
+			buildPhases = (
+				FAD129C618F338DE00817837 /* Sources */,
+				FAD129C718F338DE00817837 /* Frameworks */,
+				FAD129C818F338DE00817837 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAD129D018F338DE00817837 /* PBXTargetDependency */,
+			);
+			name = "Bootcamp RosterTests";
+			productName = "Bootcamp RosterTests";
+			productReference = FAD129CA18F338DE00817837 /* Bootcamp RosterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAD1299E18F338DE00817837 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RT;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Ryo Tulman";
+				TargetAttributes = {
+					FAD129C918F338DE00817837 = {
+						TestTargetID = FAD129A518F338DE00817837;
+					};
+				};
+			};
+			buildConfigurationList = FAD129A118F338DE00817837 /* Build configuration list for PBXProject "Bootcamp Roster" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAD1299D18F338DE00817837;
+			productRefGroup = FAD129A718F338DE00817837 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAD129A518F338DE00817837 /* Bootcamp Roster */,
+				FAD129C918F338DE00817837 /* Bootcamp RosterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAD129A418F338DE00817837 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAD129C518F338DE00817837 /* Images.xcassets in Resources */,
+				FAD129F118F3568400817837 /* Main_iPad.storyboard in Resources */,
+				FAD129F218F3568400817837 /* Main_iPhone.storyboard in Resources */,
+				FAD129EE18F33F7A00817837 /* Person Property List.plist in Resources */,
+				FAD129B418F338DE00817837 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAD129C818F338DE00817837 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAD129D618F338DE00817837 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAD129A218F338DE00817837 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAD129BA18F338DE00817837 /* RTAppDelegate.m in Sources */,
+				FAD129C318F338DE00817837 /* RTViewController.m in Sources */,
+				FAD129E918F33BC900817837 /* RTStudent.m in Sources */,
+				FAD129E618F33BAF00817837 /* RTPerson.m in Sources */,
+				FAD129EC18F33BDB00817837 /* RTTeacher.m in Sources */,
+				FAD129B618F338DE00817837 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAD129C618F338DE00817837 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAD129D818F338DE00817837 /* Bootcamp_RosterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAD129D018F338DE00817837 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAD129A518F338DE00817837 /* Bootcamp Roster */;
+			targetProxy = FAD129CF18F338DE00817837 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FAD129B218F338DE00817837 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAD129B318F338DE00817837 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FAD129D418F338DE00817837 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAD129D518F338DE00817837 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAD129D918F338DE00817837 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAD129DA18F338DE00817837 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAD129DC18F338DE00817837 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bootcamp Roster/Bootcamp Roster-Prefix.pch";
+				INFOPLIST_FILE = "Bootcamp Roster/Bootcamp Roster-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FAD129DD18F338DE00817837 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bootcamp Roster/Bootcamp Roster-Prefix.pch";
+				INFOPLIST_FILE = "Bootcamp Roster/Bootcamp Roster-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		FAD129DF18F338DE00817837 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Bootcamp Roster.app/Bootcamp Roster";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bootcamp Roster/Bootcamp Roster-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Bootcamp RosterTests/Bootcamp RosterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		FAD129E018F338DE00817837 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Bootcamp Roster.app/Bootcamp Roster";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bootcamp Roster/Bootcamp Roster-Prefix.pch";
+				INFOPLIST_FILE = "Bootcamp RosterTests/Bootcamp RosterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAD129A118F338DE00817837 /* Build configuration list for PBXProject "Bootcamp Roster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAD129D918F338DE00817837 /* Debug */,
+				FAD129DA18F338DE00817837 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAD129DB18F338DE00817837 /* Build configuration list for PBXNativeTarget "Bootcamp Roster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAD129DC18F338DE00817837 /* Debug */,
+				FAD129DD18F338DE00817837 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FAD129DE18F338DE00817837 /* Build configuration list for PBXNativeTarget "Bootcamp RosterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAD129DF18F338DE00817837 /* Debug */,
+				FAD129E018F338DE00817837 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAD1299E18F338DE00817837 /* Project object */;
+}
