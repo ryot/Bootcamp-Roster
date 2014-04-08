@@ -30,16 +30,16 @@ typedef NS_ENUM(NSInteger, PersonType) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.title = @"Bootcamp Roster";
-	// Do any additional setup after loading the view, typically from a nib.
+
+    //create and configure table view
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
+    [self.view addSubview:_tableView];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     
-    [self.view addSubview:_tableView];
-
     //Apple standard method of reading in plist
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
@@ -56,8 +56,6 @@ typedef NS_ENUM(NSInteger, PersonType) {
                                         mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                           format:&format
                                           errorDescription:&errorDesc];
-    
-    
     if (!temp) {
         NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
     }
@@ -68,7 +66,6 @@ typedef NS_ENUM(NSInteger, PersonType) {
     
     //create teacher array and objects
     _teachers = [NSMutableArray new];
-
     for (int i = 0; i < teacherNames.count; i++) {
         RTTeacher *newTeacher = [RTTeacher new];
         newTeacher.name = [teacherNames objectAtIndex:i];
@@ -82,6 +79,7 @@ typedef NS_ENUM(NSInteger, PersonType) {
         [_students addObject:newStudent];
     }
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return personType_count;
@@ -94,7 +92,6 @@ typedef NS_ENUM(NSInteger, PersonType) {
             return _students.count;
         default:
             return _teachers.count;
-
     }
 }
 
@@ -103,21 +100,25 @@ typedef NS_ENUM(NSInteger, PersonType) {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     RTPerson *person;
-//    NSMutableArray *people;
-    if (indexPath.section == kStudent) {
-        person = [_students objectAtIndex:indexPath.row];
-    } else {
-        person = [_teachers objectAtIndex:indexPath.row];
+    switch (indexPath.section) {
+        case kStudent:
+            person = _students[indexPath.row];
+            break;
+        default:
+            person = _teachers[indexPath.row];
+            break;
     }
     cell.textLabel.text = person.name;
     return cell;
 }
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == kStudent) {
-        return @"Students";
-    } else {
-        return @"Teachers";
+    switch (section) {
+        case kStudent:
+            return @"Students";
+        default:
+            return @"Teachers";
     }
 }
 
@@ -127,14 +128,15 @@ typedef NS_ENUM(NSInteger, PersonType) {
     UIViewController *detailViewController = [UIViewController new];
     detailViewController.view = [[UIView alloc] initWithFrame:self.view.frame];
     detailViewController.view.backgroundColor = [UIColor whiteColor];
-    if (indexPath.section == kStudent) {
-        detailViewController.title = [_students[indexPath.row] name];
-    } else {
-        detailViewController.title = [_teachers[indexPath.row] name];
+    switch (indexPath.section) {
+        case kStudent:
+            detailViewController.title = [_students[indexPath.row] name];
+            break;
+        default:
+            detailViewController.title = [_teachers[indexPath.row] name];
+            break;
     }
-
     [self.navigationController pushViewController:detailViewController animated:YES];
-
 }
 
 - (void)didReceiveMemoryWarning
