@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DFE9459A-A5B0-49F2-A7E5-1C38102E502D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Bootcamp Roster</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C19D1FBC-5811-443B-9CCC-03DD323923CF</key>
+		<string>ssh://github.com/ryot/Bootcamp-Roster.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Bootcamp Roster.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C19D1FBC-5811-443B-9CCC-03DD323923CF</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/ryot/Bootcamp-Roster.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C19D1FBC-5811-443B-9CCC-03DD323923CF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C19D1FBC-5811-443B-9CCC-03DD323923CF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Bootcamp Roster</string>
+		</dict>
+	</array>
+</dict>
+</plist>
