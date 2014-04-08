@@ -32,7 +32,6 @@ typedef NS_ENUM(NSInteger, PersonType) {
     [super viewDidLoad];
     
     self.title = @"Bootcamp Roster";
-
     //create and configure table view
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableView.delegate = self;
