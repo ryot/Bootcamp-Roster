@@ -10,4 +10,15 @@
 
 @implementation RTPerson
 
+-(void)invertFullName:(BOOL)inverted
+{
+    if (_lastName) {
+        if (inverted) {
+            _fullName = [[_lastName stringByAppendingString:@", "] stringByAppendingString:_firstName];
+        } else {
+            _fullName = [[_firstName stringByAppendingString:@" "] stringByAppendingString:_lastName];
+        }
+    }
+}
+
 @end

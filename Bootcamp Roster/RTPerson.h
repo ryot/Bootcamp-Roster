@@ -10,6 +10,17 @@
 
 @interface RTPerson : NSObject
 
-@property (nonatomic, strong) NSString *name;
+typedef NS_ENUM(NSInteger, PersonType) {
+    kTeacher,
+    kStudent,
+};
+
+@property (nonatomic, strong) NSString *fullName;
+@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, assign) PersonType type;
+
+-(void)invertFullName:(BOOL)inverted;
 
 @end
