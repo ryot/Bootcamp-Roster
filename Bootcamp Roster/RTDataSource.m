@@ -21,15 +21,21 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
 -(id)init {
     self = [super init];
     if (self) {
-        //reading in plist
+        //specify how to find plist in bundle
         NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Person Property List" ofType:@"plist"];
+        //if plist exists, copy read-only bundle plist to writeable documents directory
+        if ([RTDataSource movePlistToDocDirectory]) {
+            //then create full path for new doc directory plist
+            plistPath = [[RTDataSource applicationDocumentsDirectory] stringByAppendingPathComponent:@"Person Property List.plist"];
+        }
+        
+        //create runtime dictionary from new doc directory plist
         NSDictionary *personDict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+        //get arrays of name strings from dictionary
+        NSArray *teacherNames = [NSMutableArray arrayWithArray:personDict[@"Teacher"]];
+        NSArray *studentNames = [NSMutableArray arrayWithArray:personDict[@"Student"]];
         
-        //get array of name strings
-        NSArray *teacherNames = [NSMutableArray arrayWithArray:[personDict objectForKey:@"Teacher"]];
-        NSArray *studentNames = [NSMutableArray arrayWithArray:[personDict objectForKey:@"Student"]];
-        
-        //create teacher array and objects
+        //create teacher array, use name strings to make teacher objects
         _teachers = [NSMutableArray new];
         for (int i = 0; i < teacherNames.count; i++) {
             RTTeacher *newTeacher = [RTTeacher new];
@@ -42,7 +48,7 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
             newTeacher.type = kTeacher;
             [_teachers addObject:newTeacher];
         }
-        //create student array and objects
+        //create student array, use name strings to make student objects
         _students = [NSMutableArray new];
         for (int i = 0; i < studentNames.count; i++) {
             RTStudent *newStudent = [RTStudent new];
@@ -96,6 +102,26 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
         cell.imageView.image = person.image;
     }
     return cell;
+}
+
+//gets auto-generated path string for documents directory
++(NSString *)applicationDocumentsDirectory
+{
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+}
+
+//copies bundle plist to doc directory, keeping the same name
++(BOOL)movePlistToDocDirectory
+{
+    NSError *error;
+    NSFileManager *myManager = [NSFileManager defaultManager];
+    [myManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"Person Property List" ofType:@"plist"] toPath:[[RTDataSource applicationDocumentsDirectory] stringByAppendingString:@"Person Property List.plist"] error:&error];
+    if (error) {
+        NSLog(@"error: %@", error);
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA2D353718F4986900A31B92 /* RTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2D353618F4986900A31B92 /* RTDetailViewController.m */; };
+		FA2D353918F49F9700A31B92 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2D353818F49F9700A31B92 /* AssetsLibrary.framework */; };
+		FA98A37E18F5A876007F48DA /* RTDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA98A37D18F5A876007F48DA /* RTDataSource.m */; };
 		FAD129AA18F338DE00817837 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD129A918F338DE00817837 /* Foundation.framework */; };
 		FAD129AC18F338DE00817837 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD129AB18F338DE00817837 /* CoreGraphics.framework */; };
 		FAD129AE18F338DE00817837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD129AD18F338DE00817837 /* UIKit.framework */; };
@@ -39,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA2D353518F4986900A31B92 /* RTDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDetailViewController.h; sourceTree = "<group>"; };
+		FA2D353618F4986900A31B92 /* RTDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDetailViewController.m; sourceTree = "<group>"; };
+		FA2D353818F49F9700A31B92 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		FA98A37C18F5A876007F48DA /* RTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDataSource.h; sourceTree = "<group>"; };
+		FA98A37D18F5A876007F48DA /* RTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDataSource.m; sourceTree = "<group>"; };
 		FAD129A618F338DE00817837 /* Bootcamp Roster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bootcamp Roster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD129A918F338DE00817837 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FAD129AB18F338DE00817837 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -73,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA2D353918F49F9700A31B92 /* AssetsLibrary.framework in Frameworks */,
 				FAD129AC18F338DE00817837 /* CoreGraphics.framework in Frameworks */,
 				FAD129AE18F338DE00817837 /* UIKit.framework in Frameworks */,
 				FAD129AA18F338DE00817837 /* Foundation.framework in Frameworks */,
@@ -114,6 +123,7 @@
 		FAD129A818F338DE00817837 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA2D353818F49F9700A31B92 /* AssetsLibrary.framework */,
 				FAD129A918F338DE00817837 /* Foundation.framework */,
 				FAD129AB18F338DE00817837 /* CoreGraphics.framework */,
 				FAD129AD18F338DE00817837 /* UIKit.framework */,
@@ -168,6 +178,8 @@
 		FAD129E118F33B6C00817837 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA98A37C18F5A876007F48DA /* RTDataSource.h */,
+				FA98A37D18F5A876007F48DA /* RTDataSource.m */,
 				FAD129E418F33BAF00817837 /* RTPerson.h */,
 				FAD129E518F33BAF00817837 /* RTPerson.m */,
 				FAD129E718F33BC900817837 /* RTStudent.h */,
@@ -182,8 +194,8 @@
 		FAD129E218F33B7600817837 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FAD129EF18F3568400817837 /* Main_iPad.storyboard */,
 				FAD129F018F3568400817837 /* Main_iPhone.storyboard */,
+				FAD129EF18F3568400817837 /* Main_iPad.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -193,6 +205,8 @@
 			children = (
 				FAD129C118F338DE00817837 /* RTViewController.h */,
 				FAD129C218F338DE00817837 /* RTViewController.m */,
+				FA2D353518F4986900A31B92 /* RTDetailViewController.h */,
+				FA2D353618F4986900A31B92 /* RTDetailViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -297,7 +311,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA2D353718F4986900A31B92 /* RTDetailViewController.m in Sources */,
 				FAD129BA18F338DE00817837 /* RTAppDelegate.m in Sources */,
+				FA98A37E18F5A876007F48DA /* RTDataSource.m in Sources */,
 				FAD129C318F338DE00817837 /* RTViewController.m in Sources */,
 				FAD129E918F33BC900817837 /* RTStudent.m in Sources */,
 				FAD129E618F33BAF00817837 /* RTPerson.m in Sources */,
@@ -501,6 +517,7 @@
 				FAD129DD18F338DE00817837 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAD129DE18F338DE00817837 /* Build configuration list for PBXNativeTarget "Bootcamp RosterTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +526,7 @@
 				FAD129E018F338DE00817837 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
