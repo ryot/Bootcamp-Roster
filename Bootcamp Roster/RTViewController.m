@@ -8,7 +8,7 @@
 
 #import "RTViewController.h"
 #import "RTDetailViewController.h"
-#import "RTDataSource.h"
+#import "RTDataSourceController.h"
 #import "RTPerson.h"
 #import "RTStudent.h"
 #import "RTTeacher.h"
@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) RTPerson *currentPerson;
-@property (nonatomic, strong) RTDataSource *tableDataSource;
+@property (nonatomic, strong) RTDataSourceController *tableDataSource;
 
 typedef NS_ENUM(NSInteger, peopleSectionType) {
     kTeacherSection,
@@ -38,27 +38,17 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     //create and configure table view
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableView.delegate = self;
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     
-    _tableDataSource = [RTDataSource new];
+    _tableDataSource = [RTDataSourceController new];
     _tableView.dataSource = _tableDataSource;
     
     [self.view addSubview:_tableView];
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-
+    
     //set up sort button and add to nav bar
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                                                                                   target:self
                                                                                   action:@selector(sortButtonPressed)];
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch (section) {
-        case kStudentSection:
-            return @"Students";
-        default:
-            return @"Teachers";
-    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,9 +90,9 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     [allPeople addObjectsFromArray:_tableDataSource.teachers];
     for (RTPerson *person in allPeople) {
         if ([sortKey isEqual: @"firstName"]) {
-            [person invertFullName:NO];
+            person.fullNameInverted = NO;
         } else {
-            [person invertFullName:YES];
+            person.fullNameInverted = YES;
         }
     }
     [_tableView reloadData];

@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RTDataSource : NSObject <UITableViewDataSource>
+@interface RTDataSourceController : NSObject <UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *teachers, *students;
+
+-(void)saveDocumentsDirectoryPlist:(NSDictionary *)dict;
 
 @end

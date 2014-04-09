@@ -19,8 +19,10 @@ typedef NS_ENUM(NSInteger, PersonType) {
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSString *imagePath;
 @property (nonatomic, assign) PersonType type;
+@property (nonatomic) BOOL fullNameInverted;
 
--(void)invertFullName:(BOOL)inverted;
+//-(void)invertFullName:(BOOL)inverted;
 
 @end

@@ -4,28 +4,123 @@
 <dict>
 	<key>Teacher</key>
 	<array>
-		<string>John Clem</string>
-		<string>Brad Johnson</string>
-		<string>Lindy</string>
-		<string>Brook Riggio</string>
-		<string>Will</string>
-		<string>Kristin Smith</string>
-		<string>Carly Slater</string>
+		<dict>
+			<key>fullName</key>
+			<string>John Clem</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Brad Johnson</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Lindy</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Brook Riggio</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Will</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Kristin Smith</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Carly Slater</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
 	</array>
 	<key>Student</key>
 	<array>
-		<string>Michael Babiy</string>
-		<string>Cole Bratcher</string>
-		<string>Christopher Cohan</string>
-		<string>Dan Fairbanks</string>
-		<string>Lauren Lee</string>
-		<string>Sean Mcneil</string>
-		<string>Taylor Potter</string>
-		<string>Brian Radebaugh</string>
-		<string>Anton Rivera</string>
-		<string>Reed Sweeney</string>
-		<string>Ryo Tulman</string>
-		<string>Matthew Voss</string>
+		<dict>
+			<key>fullName</key>
+			<string>Michael Babiy</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Cole Bratcher</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Christopher Cohan</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Dan Fairbanks</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Lauren Lee</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Sean Mcneil</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Taylor Potter</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Brian Radebaugh</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Anton Rivera</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Reed Sweeney</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Ryo Tulman</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>fullName</key>
+			<string>Matthew Voss</string>
+			<key>imagePath</key>
+			<string></string>
+		</dict>
 	</array>
 </dict>
 </plist>

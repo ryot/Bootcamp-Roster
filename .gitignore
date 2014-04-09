@@ -11,6 +11,7 @@ build/
 !default.perspectivev3
 xcuserdata
 project.xcworkspace
+project.pbxproj
 *.xccheckout
 *.moved-aside
 DerivedData

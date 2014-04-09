@@ -10,15 +10,16 @@
 
 @implementation RTPerson
 
--(void)invertFullName:(BOOL)inverted
+-(NSString *)fullName
 {
-    if (_lastName) {
-        if (inverted) {
-            _fullName = [[_lastName stringByAppendingString:@", "] stringByAppendingString:_firstName];
-        } else {
-            _fullName = [[_firstName stringByAppendingString:@" "] stringByAppendingString:_lastName];
-        }
+    if (_fullNameInverted && _lastName) {
+        return [[_lastName stringByAppendingString:@", "] stringByAppendingString:_firstName];
+    } else if (!_fullNameInverted && _lastName){
+        return [[_firstName stringByAppendingString:@" "] stringByAppendingString:_lastName];
+    } else if (!_lastName) {
+        return _firstName;
     }
+    return @"Name Error!";
 }
 
 @end
