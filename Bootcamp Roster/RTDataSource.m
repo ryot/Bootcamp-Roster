@@ -21,29 +21,13 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
 -(id)init {
     self = [super init];
     if (self) {
-        //Apple standard method of reading in plist
-        NSString *errorDesc = nil;
-        NSPropertyListFormat format;
-        NSString *plistPath;
-        NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                  NSUserDomainMask, YES) objectAtIndex:0];
-        plistPath = [rootPath stringByAppendingPathComponent:@"Person Property List.plist"];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
-            plistPath = [[NSBundle mainBundle] pathForResource:@"Person Property List" ofType:@"plist"];
-        }
-        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
-        NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization
-                                              propertyListFromData:plistXML
-                                              mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                              format:&format
-                                              errorDescription:&errorDesc];
-        if (!temp) {
-            NSLog(@"Error reading plist: %@, format: %lu", errorDesc, format);
-        }
+        //reading in plist
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Person Property List" ofType:@"plist"];
+        NSDictionary *personDict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
         
         //get array of name strings
-        NSArray *teacherNames = [NSMutableArray arrayWithArray:[temp objectForKey:@"Teacher"]];
-        NSArray *studentNames = [NSMutableArray arrayWithArray:[temp objectForKey:@"Student"]];
+        NSArray *teacherNames = [NSMutableArray arrayWithArray:[personDict objectForKey:@"Teacher"]];
+        NSArray *studentNames = [NSMutableArray arrayWithArray:[personDict objectForKey:@"Student"]];
         
         //create teacher array and objects
         _teachers = [NSMutableArray new];

@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Teacher</key>
+	<array>
+		<string>John Clem</string>
+		<string>Brad Johnson</string>
+		<string>Lindy</string>
+		<string>Brook Riggio</string>
+		<string>Will</string>
+		<string>Kristin Smith</string>
+		<string>Carly Slater</string>
+	</array>
 	<key>Student</key>
 	<array>
 		<string>Michael Babiy</string>
@@ -16,16 +26,6 @@
 		<string>Reed Sweeney</string>
 		<string>Ryo Tulman</string>
 		<string>Matthew Voss</string>
-	</array>
-	<key>Teacher</key>
-	<array>
-		<string>John Clem</string>
-		<string>Brad Johnson</string>
-		<string>Lindy</string>
-		<string>Brook Riggio</string>
-		<string>Will</string>
-		<string>Kristin Smith</string>
-		<string>Carly Slater</string>
 	</array>
 </dict>
 </plist>
