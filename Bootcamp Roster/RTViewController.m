@@ -8,16 +8,16 @@
 
 #import "RTViewController.h"
 #import "RTDetailViewController.h"
+#import "RTDataSource.h"
 #import "RTPerson.h"
 #import "RTStudent.h"
 #import "RTTeacher.h"
 
-@interface RTViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface RTViewController () <UITableViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *teachers;
-@property (nonatomic, strong) NSMutableArray *students;
 @property (nonatomic, strong) RTPerson *currentPerson;
+@property (nonatomic, strong) RTDataSource *tableDataSource;
 
 typedef NS_ENUM(NSInteger, peopleSectionType) {
     kTeacherSection,
@@ -38,7 +38,10 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     //create and configure table view
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableView.delegate = self;
-    _tableView.dataSource = self;
+    
+    _tableDataSource = [RTDataSource new];
+    _tableView.dataSource = _tableDataSource;
+    
     [self.view addSubview:_tableView];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 
@@ -46,95 +49,6 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                                                                                   target:self
                                                                                   action:@selector(sortButtonPressed)];
-    //Apple standard method of reading in plist
-    NSString *errorDesc = nil;
-    NSPropertyListFormat format;
-    NSString *plistPath;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                              NSUserDomainMask, YES) objectAtIndex:0];
-    plistPath = [rootPath stringByAppendingPathComponent:@"Person Property List.plist"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
-        plistPath = [[NSBundle mainBundle] pathForResource:@"Person Property List" ofType:@"plist"];
-    }
-    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
-    NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization
-                                          propertyListFromData:plistXML
-                                        mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                          format:&format
-                                          errorDescription:&errorDesc];
-    if (!temp) {
-        NSLog(@"Error reading plist: %@, format: %lu", errorDesc, format);
-    }
-    
-    //get array of name strings
-    NSArray *teacherNames = [NSMutableArray arrayWithArray:[temp objectForKey:@"Teacher"]];
-    NSArray *studentNames = [NSMutableArray arrayWithArray:[temp objectForKey:@"Student"]];
-    
-    //create teacher array and objects
-    _teachers = [NSMutableArray new];
-    for (int i = 0; i < teacherNames.count; i++) {
-        RTTeacher *newTeacher = [RTTeacher new];
-        newTeacher.fullName = teacherNames[i];
-        NSArray *nameArray = [newTeacher.fullName componentsSeparatedByString:@" "];
-        newTeacher.firstName = nameArray[0];
-        if (nameArray.count > 1) {
-            newTeacher.lastName = nameArray[1];
-        }
-        newTeacher.type = kTeacher;
-        [_teachers addObject:newTeacher];
-    }
-    //create student array and objects
-    _students = [NSMutableArray new];
-    for (int i = 0; i < studentNames.count; i++) {
-        RTStudent *newStudent = [RTStudent new];
-        newStudent.fullName = studentNames[i];
-        NSArray *nameArray = [newStudent.fullName componentsSeparatedByString:@" "];
-        newStudent.firstName = nameArray[0];
-        if (nameArray.count > 1) {
-            newStudent.lastName = nameArray[1];
-        }
-        newStudent.type = kStudent;
-        [_students addObject:newStudent];
-    }
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return peopleSectionType_count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    switch (section) {
-        case kStudentSection:
-            return _students.count;
-        default:
-            return _teachers.count;
-    }
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    RTPerson *person;
-    switch (indexPath.section) {
-        case kStudentSection:
-            person = _students[indexPath.row];
-            break;
-        default:
-            person = _teachers[indexPath.row];
-            break;
-    }
-    cell.textLabel.text = person.fullName;
-    cell.imageView.image = nil;
-    if (person.image) {
-        cell.imageView.layer.cornerRadius = 15;
-        cell.imageView.layer.masksToBounds = YES;
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        cell.imageView.image = person.image;
-    }
-    return cell;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -153,10 +67,10 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     RTDetailViewController *detailViewController = [RTDetailViewController new];
     switch (indexPath.section) {
         case kStudentSection:
-            _currentPerson = _students[indexPath.row];
+            _currentPerson = _tableDataSource.students[indexPath.row];
             break;
         default:
-            _currentPerson = _teachers[indexPath.row];
+            _currentPerson = _tableDataSource.teachers[indexPath.row];
             break;
     }
     detailViewController.person = _currentPerson;
@@ -172,24 +86,22 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    NSString *sortKey;
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Sort By First Name"]) {
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
-        _students = [[_students sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
-        _teachers = [[_teachers sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
-        for (RTPerson *person in _students) {
-            [person invertFullName:NO];
-        }
-        for (RTPerson *person in _teachers) {
-            [person invertFullName:NO];
-        }
+        sortKey = @"firstName";
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Sort By Last Name"]) {
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
-        _students = [[_students sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
-        _teachers = [[_teachers sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
-        for (RTPerson *person in _students) {
-            [person invertFullName:YES];
-        }
-        for (RTPerson *person in _teachers) {
+        sortKey = @"lastName";
+    }
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey ascending:YES];
+    _tableDataSource.students = [[_tableDataSource.students sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
+    _tableDataSource.teachers = [[_tableDataSource.teachers sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
+    NSMutableArray *allPeople = [NSMutableArray new];
+    [allPeople addObjectsFromArray:_tableDataSource.students];
+    [allPeople addObjectsFromArray:_tableDataSource.teachers];
+    for (RTPerson *person in allPeople) {
+        if ([sortKey isEqual: @"firstName"]) {
+            [person invertFullName:NO];
+        } else {
             [person invertFullName:YES];
         }
     }
