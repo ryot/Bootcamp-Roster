@@ -45,29 +45,29 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
         
         //create teacher array, use name strings to make teacher objects
         _teachers = [NSMutableArray new];
-        for (int i = 0; i < teacherArray.count; i++) {
+        for (NSDictionary *teacherDict in teacherArray) {//int i = 0; i < teacherArray.count; i++) {
             RTTeacher *newTeacher = [RTTeacher new];
             newTeacher.fullNameInverted = NO;
-            newTeacher.imagePath = teacherArray[i][@"imagePath"];
+            newTeacher.imagePath = teacherDict[@"imagePath"];
             if (newTeacher.imagePath) {
                 newTeacher.image = [UIImage imageWithContentsOfFile:newTeacher.imagePath];
             }
-            newTeacher.firstName = teacherArray[i][@"firstName"];
-            newTeacher.lastName = teacherArray[i][@"lastName"];
+            newTeacher.firstName = teacherDict[@"firstName"];
+            newTeacher.lastName = teacherDict[@"lastName"];
             newTeacher.type = kTeacher;
             [_teachers addObject:newTeacher];
         }
         //create student array, use name strings to make student objects
         _students = [NSMutableArray new];
-        for (int i = 0; i < studentArray.count; i++) {
+        for (NSDictionary *studentDict in studentArray) {
             RTStudent *newStudent = [RTStudent new];
             newStudent.fullNameInverted = NO;
-            newStudent.imagePath = studentArray[i][@"imagePath"];
+            newStudent.imagePath = studentDict[@"imagePath"];
             if (newStudent.imagePath) {
                 newStudent.image = [UIImage imageWithContentsOfFile:newStudent.imagePath];
             }
-            newStudent.firstName = studentArray[i][@"firstName"];
-            newStudent.lastName = studentArray[i][@"lastName"];
+            newStudent.firstName = studentDict[@"firstName"];
+            newStudent.lastName = studentDict[@"lastName"];
             newStudent.type = kStudent;
             [_students addObject:newStudent];
         }
