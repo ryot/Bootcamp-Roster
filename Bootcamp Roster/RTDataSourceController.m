@@ -18,17 +18,25 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     peopleSectionType_count
 };
 
++(id)sharedDataSource {
+    static RTDataSourceController *sharedData = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedData = [[self alloc] init];
+    });
+    return sharedData;
+}
+
 -(id)init {
     self = [super init];
     if (self) {
-        //specify full path for doc directory plist
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Person Property List" ofType:@"plist"];
-        //if writeable documents directory plist does not exist, copy one from bundle
-        if ([RTDataSourceController movePlistToDocDirectory]) {
-            //use that doc directory plist path before moving forward
-            plistPath = [[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"Person Property List.plist"];
-            NSLog(@"does this happen");
+        //FIRST LAUNCH if writeable documents directory plist does not exist, copy from bundle
+        if (![RTDataSourceController checkIfPlistInDocDirectory]) {
+            [RTDataSourceController movePlistToDocDirectory];
         }
+        //use doc directory plist path before moving forward
+        NSString *plistPath = [[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"];
+
         //create runtime dictionary from new doc directory plist
         NSDictionary *personDict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
         //get arrays of name strings from dictionary
@@ -41,12 +49,11 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
             RTTeacher *newTeacher = [RTTeacher new];
             newTeacher.fullNameInverted = NO;
             newTeacher.imagePath = teacherArray[i][@"imagePath"];
-            NSString *fullNameString = teacherArray[i][@"fullName"];
-            NSArray *nameArray = [fullNameString componentsSeparatedByString:@" "];
-            newTeacher.firstName = nameArray[0];
-            if (nameArray.count > 1) {
-                newTeacher.lastName = nameArray[1];
+            if (newTeacher.imagePath) {
+                newTeacher.image = [UIImage imageWithContentsOfFile:newTeacher.imagePath];
             }
+            newTeacher.firstName = teacherArray[i][@"firstName"];
+            newTeacher.lastName = teacherArray[i][@"lastName"];
             newTeacher.type = kTeacher;
             [_teachers addObject:newTeacher];
         }
@@ -56,12 +63,11 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
             RTStudent *newStudent = [RTStudent new];
             newStudent.fullNameInverted = NO;
             newStudent.imagePath = studentArray[i][@"imagePath"];
-            NSString *fullNameString = studentArray[i][@"fullName"];
-            NSArray *nameArray = [fullNameString componentsSeparatedByString:@" "];
-            newStudent.firstName = nameArray[0];
-            if (nameArray.count > 1) {
-                newStudent.lastName = nameArray[1];
+            if (newStudent.imagePath) {
+                newStudent.image = [UIImage imageWithContentsOfFile:newStudent.imagePath];
             }
+            newStudent.firstName = studentArray[i][@"firstName"];
+            newStudent.lastName = studentArray[i][@"lastName"];
             newStudent.type = kStudent;
             [_students addObject:newStudent];
         }
@@ -123,20 +129,29 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     //assemble appropriately formatted dictionary
     NSMutableArray *teacherSaveDict = [NSMutableArray new];
     for (RTPerson *thisTeacher in _teachers) {
-        NSDictionary *thisTeacherDict = @{@"fullName": thisTeacher.fullName, @"imagePath": thisTeacher.imagePath};
+        NSDictionary *thisTeacherDict = @{@"firstName": thisTeacher.firstName, @"lastName": thisTeacher.lastName, @"imagePath": thisTeacher.imagePath};
         [teacherSaveDict addObject:thisTeacherDict];
     }
     NSMutableArray *studentSaveDict = [NSMutableArray new];
     for (RTPerson *thisStudent in _students) {
-        NSDictionary *thisStudentDict = @{@"fullName": thisStudent.fullName, @"imagePath": thisStudent.imagePath};
+        NSDictionary *thisStudentDict = @{@"firstName": thisStudent.firstName, @"lastName": thisStudent.lastName, @"imagePath": thisStudent.imagePath};
         [studentSaveDict addObject:thisStudentDict];
     }
     NSDictionary *saveDict = @{@"Teacher": teacherSaveDict, @"Student": studentSaveDict};
     
-    //arrange urls and save dictionary as plist
+    NSError *removeError, *copyError, *cleanupError;
+    NSFileManager *myFileManager = [NSFileManager defaultManager];
+    [saveDict writeToFile:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"] atomically:YES];
+    [myFileManager removeItemAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"] error:&removeError];
+    [myFileManager copyItemAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"] toPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"] error:&copyError];
+    [myFileManager removeItemAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"] error:&cleanupError];
+    
+    /* ---- NSURL DOESNT WORK - WHY?
     NSURL *resultURL;
-    NSURL *url = [NSURL URLWithString:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingString:@"Person Property List.plist"]];
-    NSURL *tempURL = [NSURL URLWithString:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingString:@"NEW Person Property List.plist"]];
+    NSError *error;
+    
+    NSURL *url = [NSURL URLWithString:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"]];
+    NSURL *tempURL = [NSURL URLWithString:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"]];
     [saveDict writeToURL:tempURL atomically:YES];
     NSFileManager *myManager = [NSFileManager defaultManager];
     [myManager replaceItemAtURL:url
@@ -144,7 +159,20 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
                  backupItemName:nil
                         options:NSFileManagerItemReplacementUsingNewMetadataOnly
                resultingItemURL:&resultURL
-                          error:nil];
+                          error:&error];
+    if (error) {
+        NSLog(@"error: %@", error);
+    }
+    */
+}
+
++(void)saveImageForPersonToDocumentsDirectory:(RTPerson *)thisPerson
+{
+    NSString *imageName = [NSString stringWithFormat:@"%@.png", [thisPerson.firstName stringByAppendingString:thisPerson.lastName]];
+    NSString *savePath = [[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:imageName];
+    NSData *data = UIImagePNGRepresentation(thisPerson.image);
+    [data writeToFile:savePath atomically:YES];
+    thisPerson.imagePath = savePath;
 }
 
 //gets auto-generated path string for documents directory
@@ -156,18 +184,15 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
 +(BOOL)checkIfPlistInDocDirectory
 {
     NSFileManager *myManager = [NSFileManager defaultManager];
-    return [myManager fileExistsAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingString:@"Person Property List.plist"]];
+    return [myManager fileExistsAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"]];
 }
 
 //copies bundle plist to doc directory, keeping the same name
 +(BOOL)movePlistToDocDirectory
 {
-    if (![RTDataSourceController checkIfPlistInDocDirectory]) {
-        return NO;
-    }
     NSError *error;
     NSFileManager *myManager = [NSFileManager defaultManager];
-    [myManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"Person Property List" ofType:@"plist"] toPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingString:@"Person Property List.plist"] error:&error];
+    [myManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"people" ofType:@"plist"] toPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"] error:&error];
     if (error) {
         NSLog(@"error: %@", error);
         return NO;

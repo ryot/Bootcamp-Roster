@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RTPerson.h"
 
 @interface RTDataSourceController : NSObject <UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *teachers, *students;
 
--(void)saveDocumentsDirectoryPlist:(NSDictionary *)dict;
++(id)sharedDataSource;
++(NSString *)applicationDocumentsDirectory;
++(void)saveImageForPersonToDocumentsDirectory:(RTPerson *)person;
+-(void)saveDocumentsDirectoryPlist;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "RTDetailViewController.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+#import "RTDataSourceController.h"
 
 @interface RTDetailViewController () <UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
@@ -34,7 +34,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 90, 300, 300)];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 110, 300, 300)];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_imageView];
     if (_person.image) {
@@ -99,6 +99,16 @@
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Delete Photo"]) {
         _imageView.image = nil;
         _person.image = nil;
+        NSFileManager *myManager = [NSFileManager defaultManager];
+        if ([_person.imagePath length] > 0 && [myManager fileExistsAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"]]) {
+            NSError *error;
+            [myManager removeItemAtPath:_person.imagePath error:&error];
+            if (error){
+                NSLog(@"%@", error);
+            } else {
+                _person.imagePath = @"";
+            }
+        }
         return;
     } else {
         return;
@@ -109,19 +119,9 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     _imageView.image = info[UIImagePickerControllerEditedImage];
-    _person.image = info[UIImagePickerControllerOriginalImage];
+    _person.image = info[UIImagePickerControllerEditedImage];
     [self dismissViewControllerAnimated:YES completion:^{
-        ALAssetsLibrary *library = [ALAssetsLibrary new];
-        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera && ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized)) {
-            [library writeImageToSavedPhotosAlbum:_person.image.CGImage orientation:ALAssetOrientationUp completionBlock:^(NSURL *assetURL, NSError *error) {
-                if (error) {
-                    NSLog(@"Error Saving Image: %@", error.localizedDescription);
-                }
-            }];
-        } else if (picker.sourceType == UIImagePickerControllerSourceTypeCamera && ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusRestricted)) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo" message:@"Photo Library save permission not granted." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            [alertView show];
-        }
+        [RTDataSourceController saveImageForPersonToDocumentsDirectory:_person];
     }];
 }
 
@@ -144,6 +144,7 @@
 {
     _person.firstName = _firstNameField.text;
     _person.lastName = _lastNameField.text;
+    [[RTDataSourceController sharedDataSource] saveDocumentsDirectoryPlist];
 }
 
 //challenge item - dismiss keyboard on 'return' key press

@@ -12,14 +12,15 @@
 
 -(NSString *)fullName
 {
-    if (_fullNameInverted && _lastName) {
+    if (_fullNameInverted && [_lastName length] > 0) {
         return [[_lastName stringByAppendingString:@", "] stringByAppendingString:_firstName];
-    } else if (!_fullNameInverted && _lastName){
+    } else if (!_fullNameInverted && [_lastName length] > 0){
         return [[_firstName stringByAppendingString:@" "] stringByAppendingString:_lastName];
-    } else if (!_lastName) {
+    } else if ([_firstName length] > 0) {
         return _firstName;
+    } else {
+        return _lastName; //if firstname is also blank, just show last name even if blank too
     }
-    return @"Name Error!";
 }
 
 @end
