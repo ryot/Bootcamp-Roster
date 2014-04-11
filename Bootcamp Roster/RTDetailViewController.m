@@ -147,6 +147,9 @@
                                                                                   target:self
                                                                                   action:@selector(photoButtonPressed)];
 }
+-(void)viewDidAppear:(BOOL)animated {
+    _contentOffset = _myScrollView.contentOffset;
+}
 
 - (void)photoButtonPressed
 {
@@ -200,7 +203,6 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.tag > 2) {
-        _contentOffset = _myScrollView.contentOffset;
         [_myScrollView setContentOffset:CGPointMake(0, 130) animated:YES];
     }
 }
