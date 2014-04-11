@@ -54,7 +54,7 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     
     _leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
-                                                                                           action:@selector(newPersonButtonPressed)];
+                                                                action:@selector(newPersonButtonPressed:)];
     self.navigationItem.leftBarButtonItem = _leftButton;
 }
 
@@ -77,23 +77,16 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
 
 -(void)sortButtonPressed
 {
-    _rightButton.enabled = NO;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Sort People" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Sort By First Name", @"Sort By Last Name", nil];
     actionSheet.tag = 1;
     [actionSheet showInView:self.view];
 }
 
--(void)newPersonButtonPressed
+-(void)newPersonButtonPressed:(id)sender
 {
-    _leftButton.enabled = NO;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Add Person" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add Teacher", @"Add Student", nil];
     actionSheet.tag = 2;
-   [actionSheet showInView:self.view];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesBegan:touches withEvent:event];
+   [actionSheet showInView:self.tableView];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -104,6 +97,8 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
             sortKey = @"firstName";
         } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Sort By Last Name"]) {
             sortKey = @"lastName";
+        } else {
+            return;
         }
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey ascending:YES];
         _tableDataSource.students = [[_tableDataSource.students sortedArrayUsingDescriptors:@[sortDescriptor]] mutableCopy];
@@ -119,7 +114,6 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
             }
         }
         [_tableView reloadData];
-        _rightButton.enabled = YES;
     } else if (actionSheet.tag == 2) {
         RTDetailViewController *detailViewController = [RTDetailViewController new];
         RTPerson *newPerson = [RTPerson new];
@@ -129,19 +123,18 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
         } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Add Student"]) {
             newPerson = [RTStudent new];
             [_tableDataSource.students insertObject:newPerson atIndex:0];
+        } else {
+            return;
         }
         detailViewController.person = newPerson;
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
-    [actionSheet dismissWithClickedButtonIndex:[[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Cancel"] animated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.toolbarHidden = YES;
-    _leftButton.enabled = YES;
-    _rightButton.enabled = YES;
     [_tableView reloadData];
 }
 
