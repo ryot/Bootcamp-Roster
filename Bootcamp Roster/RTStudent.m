@@ -10,4 +10,12 @@
 
 @implementation RTStudent
 
+-(id)init {
+    self = [super init];
+    if (self) {
+        self.type = kStudent;
+    }
+    return self;
+}
+
 @end

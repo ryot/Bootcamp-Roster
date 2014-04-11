@@ -10,11 +10,20 @@
 
 @implementation RTPerson
 
+-(id)init {
+    self = [super init];
+    if (self) {
+        _nameInverted = NO;
+        _imagePath = @"";
+    }
+    return self;
+}
+
 -(NSString *)fullName
 {
-    if (_fullNameInverted && [_lastName length] > 0) {
+    if (_nameInverted && [_lastName length] > 0) {
         return [[_lastName stringByAppendingString:@", "] stringByAppendingString:_firstName];
-    } else if (!_fullNameInverted && [_lastName length] > 0){
+    } else if (!_nameInverted && [_lastName length] > 0){
         return [[_firstName stringByAppendingString:@" "] stringByAppendingString:_lastName];
     } else if ([_firstName length] > 0) {
         return _firstName;

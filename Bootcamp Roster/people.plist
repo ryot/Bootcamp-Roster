@@ -11,6 +11,16 @@
 			<string>Clem</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -19,6 +29,16 @@
 			<string>Johnson</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -27,6 +47,16 @@
 			<string></string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -35,6 +65,16 @@
 			<string>Riggio</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -43,6 +83,16 @@
 			<string></string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -51,6 +101,16 @@
 			<string>Smith</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -59,6 +119,16 @@
 			<string>Slater</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 	</array>
 	<key>Student</key>
@@ -70,6 +140,16 @@
 			<string>Babiy</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -78,6 +158,16 @@
 			<string>Bratcher</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -86,6 +176,16 @@
 			<string>Cohan</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -94,6 +194,16 @@
 			<string>Fairbanks</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -102,6 +212,16 @@
 			<string>Lee</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -110,6 +230,16 @@
 			<string>Mcneil</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -118,6 +248,16 @@
 			<string>Potter</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -126,6 +266,16 @@
 			<string>Radebaugh</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -134,6 +284,16 @@
 			<string>Rivera</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -142,6 +302,16 @@
 			<string>Sweeney</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -150,6 +320,16 @@
 			<string>Tulman</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 		<dict>
 			<key>firstName</key>
@@ -158,6 +338,16 @@
 			<string>Voss</string>
 			<key>imagePath</key>
 			<string></string>
+			<key>twitter</key>
+			<string></string>
+			<key>github</key>
+			<string></string>
+            <key>r</key>
+            <real>0.0</real>
+            <key>g</key>
+            <real>0.0</real>
+            <key>b</key>
+            <real>0.0</real>
 		</dict>
 	</array>
 </dict>

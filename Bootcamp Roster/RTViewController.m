@@ -88,7 +88,12 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     _leftButton.enabled = NO;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Add Person" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add Teacher", @"Add Student", nil];
     actionSheet.tag = 2;
-    [actionSheet showInView:self.view];
+   [actionSheet showInView:self.view];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -108,36 +113,33 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
         [allPeople addObjectsFromArray:_tableDataSource.teachers];
         for (RTPerson *person in allPeople) {
             if ([sortKey isEqual:@"firstName"]) {
-                person.fullNameInverted = NO;
+                person.nameInverted = NO;
             } else {
-                person.fullNameInverted = YES;
+                person.nameInverted = YES;
             }
         }
         [_tableView reloadData];
-        [[RTDataSourceController sharedDataSource] saveDocumentsDirectoryPlist];
         _rightButton.enabled = YES;
     } else if (actionSheet.tag == 2) {
         RTDetailViewController *detailViewController = [RTDetailViewController new];
         RTPerson *newPerson = [RTPerson new];
         if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Add Teacher"]) {
             newPerson = [RTTeacher new];
-            newPerson.type = kTeacher;
             [_tableDataSource.teachers insertObject:newPerson atIndex:0];
         } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Add Student"]) {
             newPerson = [RTStudent new];
-            newPerson.type = kStudent;
             [_tableDataSource.students insertObject:newPerson atIndex:0];
         }
-        newPerson.imagePath = @"";
-        newPerson.fullNameInverted = NO;
         detailViewController.person = newPerson;
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
+    [actionSheet dismissWithClickedButtonIndex:[[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Cancel"] animated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.toolbarHidden = YES;
     _leftButton.enabled = YES;
     _rightButton.enabled = YES;
     [_tableView reloadData];

@@ -45,30 +45,46 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
         
         //create teacher array, use name strings to make teacher objects
         _teachers = [NSMutableArray new];
-        for (NSDictionary *teacherDict in teacherArray) {//int i = 0; i < teacherArray.count; i++) {
+        for (NSDictionary *dict in teacherArray) {//int i = 0; i < teacherArray.count; i++) {
             RTTeacher *newTeacher = [RTTeacher new];
-            newTeacher.fullNameInverted = NO;
-            newTeacher.imagePath = teacherDict[@"imagePath"];
+            newTeacher.imagePath = dict[@"imagePath"];
             if (newTeacher.imagePath) {
                 newTeacher.image = [UIImage imageWithContentsOfFile:newTeacher.imagePath];
             }
-            newTeacher.firstName = teacherDict[@"firstName"];
-            newTeacher.lastName = teacherDict[@"lastName"];
-            newTeacher.type = kTeacher;
+            newTeacher.firstName = dict[@"firstName"];
+            newTeacher.lastName = dict[@"lastName"];
+            newTeacher.twitter = dict[@"twitter"];
+            newTeacher.github = dict[@"github"];
+            CGFloat r = [dict[@"r"] floatValue];
+            CGFloat g = [dict[@"g"] floatValue];
+            CGFloat b = [dict[@"b"] floatValue];
+            if (r == 0.0 && g == 0.0 && b == 0.0) {
+                newTeacher.color = [UIColor whiteColor];
+            } else {
+                newTeacher.color = [UIColor colorWithRed:r green:g blue:b alpha:1.0];
+            }
             [_teachers addObject:newTeacher];
         }
         //create student array, use name strings to make student objects
         _students = [NSMutableArray new];
-        for (NSDictionary *studentDict in studentArray) {
+        for (NSDictionary *dict in studentArray) {
             RTStudent *newStudent = [RTStudent new];
-            newStudent.fullNameInverted = NO;
-            newStudent.imagePath = studentDict[@"imagePath"];
+            newStudent.imagePath = dict[@"imagePath"];
             if (newStudent.imagePath) {
                 newStudent.image = [UIImage imageWithContentsOfFile:newStudent.imagePath];
             }
-            newStudent.firstName = studentDict[@"firstName"];
-            newStudent.lastName = studentDict[@"lastName"];
-            newStudent.type = kStudent;
+            newStudent.firstName = dict[@"firstName"];
+            newStudent.lastName = dict[@"lastName"];
+            newStudent.twitter = dict[@"twitter"];
+            newStudent.github = dict[@"github"];
+            CGFloat r = [dict[@"r"] floatValue];
+            CGFloat g = [dict[@"g"] floatValue];
+            CGFloat b = [dict[@"b"] floatValue];
+            if (r == 0.0 && g == 0.0 && b == 0.0) {
+                newStudent.color = [UIColor whiteColor];
+            } else {
+                newStudent.color = [UIColor colorWithRed:r green:g blue:b alpha:1.0];
+            }
             [_students addObject:newStudent];
         }
     }
@@ -111,6 +127,7 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
         cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
         cell.imageView.image = person.image;
     }
+    cell.backgroundColor = person.color;
     return cell;
 }
 
@@ -129,12 +146,16 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     //assemble appropriately formatted dictionary
     NSMutableArray *teacherSaveDict = [NSMutableArray new];
     for (RTPerson *thisTeacher in _teachers) {
-        NSDictionary *thisTeacherDict = @{@"firstName": thisTeacher.firstName, @"lastName": thisTeacher.lastName, @"imagePath": thisTeacher.imagePath};
+        CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0;
+        [thisTeacher.color getRed:&red green:&green blue:&blue alpha:&alpha];
+        NSDictionary *thisTeacherDict = @{@"firstName": thisTeacher.firstName, @"lastName": thisTeacher.lastName, @"imagePath": thisTeacher.imagePath, @"twitter": thisTeacher.twitter, @"github": thisTeacher.github, @"r": [NSNumber numberWithFloat:red], @"g": [NSNumber numberWithFloat:green], @"b": [NSNumber numberWithFloat:blue]};
         [teacherSaveDict addObject:thisTeacherDict];
     }
     NSMutableArray *studentSaveDict = [NSMutableArray new];
     for (RTPerson *thisStudent in _students) {
-        NSDictionary *thisStudentDict = @{@"firstName": thisStudent.firstName, @"lastName": thisStudent.lastName, @"imagePath": thisStudent.imagePath};
+        CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha = 0.0;
+        [thisStudent.color getRed:&red green:&green blue:&blue alpha:&alpha];
+        NSDictionary *thisStudentDict = @{@"firstName": thisStudent.firstName, @"lastName": thisStudent.lastName, @"imagePath": thisStudent.imagePath, @"twitter": thisStudent.twitter, @"github": thisStudent.github, @"r": [NSNumber numberWithFloat:red], @"g": [NSNumber numberWithFloat:green], @"b": [NSNumber numberWithFloat:blue]};
         [studentSaveDict addObject:thisStudentDict];
     }
     NSDictionary *saveDict = @{@"Teacher": teacherSaveDict, @"Student": studentSaveDict};
@@ -142,28 +163,10 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     NSError *removeError, *copyError, *cleanupError;
     NSFileManager *myFileManager = [NSFileManager defaultManager];
     [saveDict writeToFile:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"] atomically:YES];
+    
     [myFileManager removeItemAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"] error:&removeError];
     [myFileManager copyItemAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"] toPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"] error:&copyError];
     [myFileManager removeItemAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"] error:&cleanupError];
-    
-    /* ---- NSURL DOESNT WORK - WHY?
-    NSURL *resultURL;
-    NSError *error;
-    
-    NSURL *url = [NSURL URLWithString:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"]];
-    NSURL *tempURL = [NSURL URLWithString:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"]];
-    [saveDict writeToURL:tempURL atomically:YES];
-    NSFileManager *myManager = [NSFileManager defaultManager];
-    [myManager replaceItemAtURL:url
-                  withItemAtURL:tempURL
-                 backupItemName:nil
-                        options:NSFileManagerItemReplacementUsingNewMetadataOnly
-               resultingItemURL:&resultURL
-                          error:&error];
-    if (error) {
-        NSLog(@"error: %@", error);
-    }
-    */
 }
 
 +(void)saveImageForPersonToDocumentsDirectory:(RTPerson *)thisPerson
