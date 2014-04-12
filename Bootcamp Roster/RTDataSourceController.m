@@ -7,6 +7,7 @@
 //
 
 #import "RTDataSourceController.h"
+#import "RTTableViewCell.h"
 #import "RTTeacher.h"
 #import "RTStudent.h"
 
@@ -108,7 +109,7 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    RTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RTCell" forIndexPath:indexPath];
     
     RTPerson *person;
     switch (indexPath.section) {
@@ -119,15 +120,7 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
             person = _teachers[indexPath.row];
             break;
     }
-    cell.textLabel.text = person.fullName;
-    cell.imageView.image = nil;
-    if (person.image) {
-        cell.imageView.layer.cornerRadius = 15;
-        cell.imageView.layer.masksToBounds = YES;
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        cell.imageView.image = person.image;
-    }
-    cell.backgroundColor = person.color;
+    cell.person = person;
     return cell;
 }
 
@@ -165,8 +158,20 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     [saveDict writeToFile:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"] atomically:YES];
     
     [myFileManager removeItemAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"] error:&removeError];
+    if (removeError) {
+        NSLog(@"Error: %@", removeError);
+        return;
+    }
     [myFileManager copyItemAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"] toPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"] error:&copyError];
+    if (copyError) {
+        NSLog(@"Error: %@", removeError);
+        return;
+    }
     [myFileManager removeItemAtPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"new-people.plist"] error:&cleanupError];
+    if (cleanupError) {
+        NSLog(@"Error: %@", removeError);
+        return;
+    }
 }
 
 +(void)saveImageForPersonToDocumentsDirectory:(RTPerson *)thisPerson
@@ -197,7 +202,7 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     NSFileManager *myManager = [NSFileManager defaultManager];
     [myManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"people" ofType:@"plist"] toPath:[[RTDataSourceController applicationDocumentsDirectory] stringByAppendingPathComponent:@"people.plist"] error:&error];
     if (error) {
-        NSLog(@"error: %@", error);
+        NSLog(@"Error: %@", error);
         return NO;
     } else {
         return YES;

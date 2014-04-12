@@ -7,6 +7,7 @@
 //
 
 #import "RTViewController.h"
+#import "RTTableViewCell.h"
 #import "RTDetailViewController.h"
 #import "RTDataSourceController.h"
 #import "RTPerson.h"
@@ -39,8 +40,9 @@ typedef NS_ENUM(NSInteger, peopleSectionType) {
     //create and configure table view
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableView.delegate = self;
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    
+    _tableView.rowHeight = kCELL_HEIGHT;
+    [_tableView registerClass:[RTTableViewCell class] forCellReuseIdentifier:@"RTCell"];
+        
     _tableView.dataSource = [RTDataSourceController sharedDataSource];
     _tableDataSource = [RTDataSourceController sharedDataSource];
 

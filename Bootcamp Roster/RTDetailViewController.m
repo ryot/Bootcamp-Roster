@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIScrollView *myScrollView;
 @property (nonatomic) CGPoint contentOffset;
 @property (nonatomic, strong) UISlider *redSlider, *greenSlider, *blueSlider;
+@property (nonatomic) BOOL viewControllerDisappearing;
 
 @end
 
@@ -41,6 +42,7 @@
     [self.view addSubview:_myScrollView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldEdited) name:UITextFieldTextDidChangeNotification object:nil];
+    
     if (_person.color) {
         _myScrollView.backgroundColor = _person.color;
     } else {
@@ -147,6 +149,7 @@
                                                                                   target:self
                                                                                   action:@selector(photoButtonPressed)];
 }
+
 -(void)viewDidAppear:(BOOL)animated {
     _contentOffset = _myScrollView.contentOffset;
 }
@@ -179,7 +182,7 @@
             NSError *error;
             [myManager removeItemAtPath:_person.imagePath error:&error];
             if (error){
-                NSLog(@"%@", error);
+                NSLog(@"Error: %@", error);
             } else {
                 _person.imagePath = @"";
             }
@@ -204,14 +207,16 @@
 {
     if (textField.tag > 2) {
         [_myScrollView setContentOffset:CGPointMake(0, 130) animated:YES];
+        NSLog(@"textfield began edit");
     }
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    if (textField.tag > 2) {
+    if (textField.tag > 2 && !_viewControllerDisappearing) {
         [_myScrollView setContentOffset:_contentOffset animated:YES];
     }
+    return YES;
 }
 
 -(void)textFieldEdited {
@@ -241,6 +246,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    _viewControllerDisappearing = YES;
     _person.firstName = _firstNameField.text;
     _person.lastName = _lastNameField.text;
     _person.twitter = _twitterField.text;

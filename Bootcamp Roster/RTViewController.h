@@ -10,4 +10,6 @@
 
 @interface RTViewController : UIViewController
 
+#define kCELL_HEIGHT 48
+
 @end
